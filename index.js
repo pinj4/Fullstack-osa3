@@ -25,8 +25,6 @@ let persons = [
       }
     ]
 
-
-
 app.get('/', (request, response) => {
     console.log("hello world")
     response.send('<h1>Hello World!</h1>')
@@ -37,9 +35,21 @@ app.get('/api/persons', (request, response) => {
     response.json(persons)
 })
 
+app.get('/api/persons/:id', (request, response) => {
+  console.log("get person")
+  const id = Number(request.params.id)
+  const person = persons.find(person => person.id === id)
+  if (person) {
+      console.log("found")
+      response.json(person)
+    } else {
+    console.log("not found")
+      response.status(404).end()
+    }
+})
+
 app.get('/api/info', (request, response) => {
-  const currDate = new Date().toLocaleDateString();
-  const currTime = new Date().toLocaleTimeString();
+  console.log("info")
   response.send(
     `Phonebook has info for ${persons.length} people
     <p>${new Date()}</p>`
