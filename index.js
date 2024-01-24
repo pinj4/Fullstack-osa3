@@ -48,6 +48,14 @@ app.get('/api/persons/:id', (request, response) => {
     }
 })
 
+app.delete('/api/persons/:id', (request, response) => {
+  const id = Number(request.params.id)
+  console.log("delete ", id)
+  persons = persons.filter(person => person.id !== id)
+
+  response.status(204).end()
+})
+
 app.get('/api/info', (request, response) => {
   console.log("info")
   response.send(
