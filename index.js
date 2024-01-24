@@ -26,6 +26,7 @@ let persons = [
     ]
 
 
+
 app.get('/', (request, response) => {
     console.log("hello world")
     response.send('<h1>Hello World!</h1>')
@@ -34,6 +35,15 @@ app.get('/', (request, response) => {
 app.get('/api/persons', (request, response) => {
     console.log("get all")
     response.json(persons)
+})
+
+app.get('/api/info', (request, response) => {
+  const currDate = new Date().toLocaleDateString();
+  const currTime = new Date().toLocaleTimeString();
+  response.send(
+    `Phonebook has info for ${persons.length} people
+    <p>${new Date()}</p>`
+  )
 })
 
 const PORT = 3001
