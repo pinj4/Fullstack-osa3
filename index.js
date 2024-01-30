@@ -4,7 +4,13 @@ const morgan = require('morgan')
 const app = express()
 
 app.use(express.json())
-app.use(morgan('tiny'))
+
+morgan.token('body', function (req, res) { 
+  if(JSON.stringify(req.body) != '{}') {
+    return JSON.stringify(req.body)
+  }
+})
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
 
 
@@ -49,7 +55,7 @@ app.get('/api/persons/:id', (request, response) => {
       console.log('found')
       response.json(person)
     } else {
-    console.log('not found')
+      console.log('not found')
       response.status(404).end()
     }
 })
