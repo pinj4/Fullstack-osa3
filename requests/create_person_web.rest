@@ -1,0 +1,7 @@
+POST https://fullstack-osa3-4jf9.onrender.com/api/persons
+Content-Type: application/json
+
+{
+    "name": "new guy",
+    "number": "12-34-1234567"
+}
