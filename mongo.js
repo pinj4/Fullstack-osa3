@@ -11,7 +11,7 @@ const input_name = process.argv[3]
 const input_number = process.argv[4]
 
 const url = 
-`mongodb+srv://fullstack:${password}@cluster0.v8qj6vf.mongodb.net/Phonebook?retryWrites=true&w=majority`
+`mongodb+srv://fullstack:${password}@cluster0.v8qj6vf.mongodb.net/Phonebook?retryWrites=true&w=majority&appName=Cluster0`
 
 mongoose.set('strictQuery', false)
 mongoose.connect(url)
