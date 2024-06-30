@@ -9,8 +9,8 @@ const Person = require('./models/person')
 app.use(express.static('dist'))
 app.use(express.static('build'))
 
-morgan.token('body', function (req, res) { 
-  if(JSON.stringify(req.body) != '{}') {
+morgan.token('body', function (req, res) {
+  if(JSON.stringify(req.body) !== '{}') {
     return JSON.stringify(req.body)
   }
 })
@@ -42,10 +42,10 @@ app.use(express.json())
 app.use(requestLogger)
 
 app.get('/', (request, response) => {
-    console.log('hello world')
-    response.send('<h1>Hello World!</h1>')
+  console.log('hello world')
+  response.send('<h1>Hello World!</h1>')
 })
-      
+
 app.get('/api/persons', (request, response) => {
   Person.find({}).then(persons => {
     response.json(persons)
@@ -60,7 +60,7 @@ app.get('/api/persons/:id', (request, response, next) => {
       response.status(404).end()
     }
   })
-  .catch(error => next(error))
+    .catch(error => next(error))
 })
 
 app.delete('/api/persons/:id', (request, response, next) => {
@@ -85,14 +85,14 @@ app.post('/api/persons', (request, response, next) => {
 
   if (!body.name) {
     console.log('name missing')
-    return response.status(400).json({ 
-      error: 'name missing' 
+    return response.status(400).json({
+      error: 'name missing'
     })
   }
   if (!body.number) {
     console.log('number missing')
-    return response.status(400).json({ 
-      error: 'number missing' 
+    return response.status(400).json({
+      error: 'number missing'
     })
   }
 
@@ -104,7 +104,7 @@ app.post('/api/persons', (request, response, next) => {
   person.save().then(savedPerson => {
     response.json(savedPerson)
   })
-  .catch(error => next(error))
+    .catch(error => next(error))
 })
 
 app.put('/api/persons/:id', (request, response, next) => {
@@ -112,8 +112,8 @@ app.put('/api/persons/:id', (request, response, next) => {
 
   if (!number) {
     console.log('number missing')
-    return response.status(400).json({ 
-      error: 'number missing' 
+    return response.status(400).json({
+      error: 'number missing'
     })
   }
 
